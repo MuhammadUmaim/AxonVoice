@@ -100,6 +100,9 @@
   .btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.02)}
   .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.26);transform:translateY(-1px)}
   .btn-sm{height:38px;padding:0 16px;font-size:13.5px}
+  .btn-danger{background:#ff5f5f;color:#2a0505;box-shadow:0 0 0 1px rgba(255,95,95,.5),0 10px 30px -12px rgba(255,95,95,.5)}
+  .btn-danger:hover{background:#ff7878;transform:translateY(-1px)}
+  .btn:disabled{opacity:.62;cursor:progress;transform:none!important;box-shadow:none}
   .menu-btn{display:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--line-2);place-items:center}
   .menu-btn span{display:block;width:16px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
   .menu-btn span+span{margin-top:4px}
@@ -114,7 +117,7 @@
   }
   .mobile-menu.open{display:flex;animation:slideDown .25s ease-out}
   .mobile-menu a{padding:14px 4px;font-size:17px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.05)}
-    .mobile-menu a:last-of-type{border-bottom:none}
+  .mobile-menu a:last-of-type{border-bottom:none}
   .mobile-menu .btn{width:100%}
   .mobile-menu .js-talk{width:100%;margin-top:14px}
   @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
@@ -146,6 +149,7 @@
   /* mic dot inside “talk” buttons */
   .mic-dot{position:relative;width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;opacity:.9}
   .mic-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid currentColor;animation:pulse 2s ease-out infinite}
+
   .hero-note{margin-top:18px;font-size:13px;color:var(--dim);display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
   .hero-note span{display:inline-flex;align-items:center;gap:6px}
   .hero-note svg{width:14px;height:14px;color:var(--accent)}
@@ -435,6 +439,8 @@
   .voice-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px 0 20px}
   .voice-brand{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);letter-spacing:.02em}
   .voice-brand .dot-live{width:6px;height:6px}
+  .voice-live-badge{display:inline-flex;align-items:center;gap:5px;margin-left:8px;padding:2px 7px;border-radius:5px;background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.4);color:#ff9d9d;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em}
+  .voice-live-badge i{width:5px;height:5px;border-radius:50%;background:#ff6b6b;animation:blink 1.4s steps(1) infinite}
   .voice-close{
     width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
     border:1px solid var(--line-2);background:rgba(255,255,255,.04);color:var(--muted);
@@ -449,6 +455,7 @@
     display:grid;place-items:center;
     background:radial-gradient(circle at 35% 30%,rgba(116,230,176,.55),rgba(116,230,176,.12) 55%,transparent 72%);
     border:1px solid rgba(116,230,176,.35);
+    transition:background .3s,border-color .3s;
   }
   .voice-orb::before,.voice-orb::after{
     content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(116,230,176,.4);opacity:0;
@@ -462,6 +469,8 @@
   .voice-orb.live .core{animation:coreBreath 2.4s ease-in-out infinite}
   .voice-orb.live .core .mic-ico{display:none}
   .voice-orb.live .core .stop-ico{display:block}
+  .voice-orb.connecting{border-color:rgba(143,208,255,.5);background:radial-gradient(circle at 35% 30%,rgba(143,208,255,.45),rgba(143,208,255,.1) 55%,transparent 72%)}
+  .voice-orb.connecting::before,.voice-orb.connecting::after{animation:orbPulse 1.6s ease-out infinite}
   @keyframes coreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
   .voice-status{margin-top:20px;font-size:13px;color:var(--accent);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;min-height:18px}
   .voice-title{margin-top:10px;font-size:23px;font-weight:600;letter-spacing:-.03em;line-height:1.2}
@@ -476,12 +485,6 @@
   .voice-links a:hover{color:var(--accent)}
   .voice-fallback{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,190,120,.35);background:rgba(255,190,120,.08);color:#ffd9a8;font-size:12.5px;line-height:1.55;text-align:left;display:none}
   .voice-fallback.show{display:block}
-  .voice-live-badge{display:inline-flex;align-items:center;gap:5px;margin-left:8px;padding:2px 7px;border-radius:5px;background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.4);color:#ff9d9d;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em}
-  .voice-live-badge i{width:5px;height:5px;border-radius:50%;background:#ff6b6b;animation:blink 1.4s steps(1) infinite}
-  .voice-orb.connecting{border-color:rgba(143,208,255,.5);background:radial-gradient(circle at 35% 30%,rgba(143,208,255,.45),rgba(143,208,255,.1) 55%,transparent 72%)}
-  .voice-orb.connecting::before,.voice-orb.connecting::after{animation:orbPulse 1.6s ease-out infinite}
-  .voice-cta .btn:disabled{opacity:.62;cursor:progress;transform:none;box-shadow:none}
-  .voice-cta .btn:disabled:hover{transform:none}
   @media (max-width:640px){
     .voice-sheet{max-width:100%;border-radius:22px}
     .voice-body{padding:6px 18px 22px}
@@ -556,8 +559,8 @@
         <a href="#faq">FAQ</a>
       </nav>
       <div class="nav-cta">
-        <button type="button" class="btn btn-ghost btn-sm js-talk" data-src="nav">
-          <span class="mic-dot" aria-hidden="true"></span> Try Emili
+        <button type="button" class="btn btn-ghost btn-sm js-talk">
+          <span class="mic-dot" aria-hidden="true"></span> Talk to Emili
         </button>
         <a href="#contact" class="btn btn-primary btn-sm">Start a project</a>
         <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
@@ -572,9 +575,9 @@
     <a href="#work">Results</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
-    <a href="#contact" class="btn btn-primary js-talk" data-src="mobile">
+    <button type="button" class="btn btn-primary js-talk">
       <span class="mic-dot" aria-hidden="true"></span> Talk to Emili
-    </a>
+    </button>
   </div>
 
   <main id="top">
@@ -601,8 +604,8 @@
 
           <div class="voice-cta">
             <button type="button" class="btn btn-primary" id="voiceStart">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-              <span id="voiceStartLabel">Start the call</span>
+              <span class="mic-dot" aria-hidden="true"></span>
+              <span id="voiceStartLabel">Call the Agent</span>
             </button>
             <a href="#contact" class="btn btn-ghost js-close-voice">Prefer a human? Message me</a>
           </div>
@@ -641,7 +644,7 @@
         </p>
 
         <div class="hero-actions reveal" data-delay="3">
-          <button type="button" class="btn btn-primary js-talk" data-src="hero">
+          <button type="button" class="btn btn-primary js-talk">
             <span class="mic-dot" aria-hidden="true"></span>
             Talk to Emili — live demo
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -787,14 +790,14 @@
             <span class="line" aria-hidden="true"></span>
             <div class="n">01 — DISCOVERY</div>
             <h3>Audit &amp; script</h3>
-            <p>I listen to your calls and map every reason people phone in. We write the scripts together — tone, objections, what the agent must never say.</p>
+            <p>I listen to your calls and map every reason homeowners phone in. We write the scripts together — tone, objections, what the agent must never say.</p>
             <span class="badge">~ 60 min call</span>
           </div>
           <div class="step reveal" data-delay="1" data-step>
             <span class="line" aria-hidden="true"></span>
             <div class="n">02 — BUILD</div>
             <h3>Agent &amp; integrations</h3>
-            <p>Your agent gets a voice, knowledge, and real hands: calendar, CRM, SMS, your booking system. You test it live and we tune until it sounds like your best receptionist.</p>
+            <p>Your agent gets a voice, knowledge, and real hands: calendar, CRM, SMS, your booking system. You test it live and we tune until it sounds like your best office manager.</p>
             <span class="badge">~ 7–10 days</span>
           </div>
           <div class="step reveal" data-delay="2" data-step>
@@ -914,11 +917,11 @@
           <article class="price reveal">
             <div class="name">STARTER</div>
             <div class="amount"><span class="cur">$</span><span class="val">1,490</span><span class="per">/ build</span></div>
-            <p class="desc">For solo operators who just need the phone answered properly.</p>
+            <p class="desc">For solo roofers who just need the phone answered properly.</p>
             <ul>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>1 AI voice agent</li>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Up to 300 calls / month</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>FAQ + message taking</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Storm &amp; leak intake</li>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Email summaries</li>
             </ul>
             <a href="#contact" class="btn btn-ghost">Start with Starter</a>
@@ -928,7 +931,7 @@
             <span class="flag">Most popular</span>
             <div class="name">GROWTH</div>
             <div class="amount"><span class="cur">$</span><span class="val">2,900</span><span class="per">/ build + $390 mo</span></div>
-            <p class="desc">For teams with real call volume and a calendar to fill.</p>
+            <p class="desc">For crews with real call volume and a calendar to fill.</p>
             <ul>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Starter</li>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Up to 1,500 calls / month</li>
@@ -942,7 +945,7 @@
           <article class="price reveal" data-delay="2">
             <div class="name">CUSTOM</div>
             <div class="amount"><span class="val" style="font-size:1.9rem">Let's talk</span></div>
-            <p class="desc">Multi-location, multi-language, or deep systems integration.</p>
+            <p class="desc">Multi-crew, multi-state, or deep systems integration.</p>
             <ul>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited agents &amp; numbers</li>
               <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom API integrations</li>
@@ -1002,7 +1005,7 @@
           <h2>Hear your own roofing line <em>answered properly.</em></h2>
           <p>Click the button and talk to Emili right now — she's the same agent I'd build for your company, answering as if it were your line. No form, no callback, just try it.</p>
           <div class="actions">
-            <button type="button" class="btn btn-primary js-talk" data-src="cta">
+            <button type="button" class="btn btn-primary js-talk">
               <span class="mic-dot" aria-hidden="true"></span>
               Talk to Emili now
             </button>
@@ -1031,7 +1034,7 @@
               </div>
               <div class="item">
                 <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-                <div><h4>Call the demo agent</h4><p>+1 (415) 555-0142 — it will answer</p></div>
+                <div><h4>Hear the agent</h4><p>Click any “Talk to Emili” button — it will answer</p></div>
               </div>
               <div class="item">
                 <div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
@@ -1145,8 +1148,170 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/livekit-client@2.25.0/dist/livekit-client.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@3.0.4/dist/index.umd.js"></script>
+<!-- ============ VOICE AGENT (Retell) ============ -->
+<script type="module">
+import { RetellWebClient } from "https://esm.sh/retell-client-js-sdk";
+
+const RETELL_PUBLIC_KEY = "public_key_7e599961f40a3fa942c9d";
+const RETELL_AGENT_ID   = "agent_b56cecb7ced0f34e1a43ce1e92";
+
+const retellWebClient = new RetellWebClient();
+let callActive = false;
+
+/* ---------- modal wiring ---------- */
+const overlay    = document.getElementById('voiceOverlay');
+const sheet      = overlay.querySelector('.voice-sheet');
+const orb        = document.getElementById('voiceOrb');
+const statusEl   = document.getElementById('voiceStatus');
+const startBtn   = document.getElementById('voiceStart');
+const startLabel = document.getElementById('voiceStartLabel');
+const closeBtn   = document.getElementById('voiceClose');
+const liveBadge  = document.getElementById('voiceLive');
+const fallbackEl = document.getElementById('voiceFallback');
+const fallbackMsg= document.getElementById('voiceFallbackMsg');
+let lastFocus = null;
+
+function setStatus(t){ if(statusEl) statusEl.textContent = t; }
+function setButton(label, variant){
+  startLabel.textContent = label;
+  startBtn.classList.toggle('btn-danger', variant === 'danger');
+  startBtn.classList.toggle('btn-primary', variant !== 'danger');
+  startBtn.disabled = false;
+}
+function showError(msg){
+  if(!fallbackEl) return;
+  fallbackMsg.textContent = msg;
+  fallbackEl.classList.add('show');
+}
+
+function openVoice(){
+  lastFocus = document.activeElement;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  document.body.classList.add('voice-open');
+  sheet.focus({preventScroll:true});
+  const menu = document.getElementById('mobileMenu');
+  const menuBtn = document.getElementById('menuBtn');
+  if(menu && menu.classList.contains('open')){
+    menu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  setStatus('Ready to talk');
+}
+
+function closeVoice(){
+  if(callActive) endCall();
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.classList.remove('voice-open');
+  if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+}
+
+/* ---------- call control ---------- */
+async function startCall(){
+  if(callActive) return;
+  if(fallbackEl) fallbackEl.classList.remove('show');
+  startBtn.disabled = true;
+  startLabel.textContent = 'Connecting…';
+  setStatus('Connecting…');
+  orb.classList.remove('live');
+  orb.classList.add('connecting');
+
+  try{
+    // 1. ask Retell for a web-call access token using the PUBLIC key
+    const res = await fetch('https://api.retellai.com/v2/create-web-call', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + RETELL_PUBLIC_KEY
+      },
+      body: JSON.stringify({ agent_id: RETELL_AGENT_ID })
+    });
+    if(!res.ok){
+      let detail = 'HTTP ' + res.status;
+      try{ const j = await res.json(); detail = j.error_message || j.message || detail; }catch(e){}
+      throw new Error(detail);
+    }
+    const data = await res.json();
+    if(!data || !data.access_token) throw new Error('No access token returned by Retell.');
+
+    // 2. join the call
+    await retellWebClient.startCall({ accessToken: data.access_token });
+  }catch(err){
+    console.error('[Retell] startCall failed:', err);
+    showError((err && err.message) ? err.message : 'The call could not start.');
+    orb.classList.remove('connecting','live');
+    setStatus('Could not connect');
+    setButton('Call the Agent', 'primary');
+  }
+}
+
+function endCall(){
+  try{ retellWebClient.stopCall(); }catch(e){ console.warn('[Retell] stopCall:', e); }
+  callActive = false;
+  orb.classList.remove('live','connecting');
+  if(liveBadge) liveBadge.style.display = 'none';
+  setStatus('Call ended');
+  setButton('Call the Agent', 'primary');
+}
+
+/* single handler: one button that starts, then ends, the live call */
+startBtn.addEventListener('click', () => {
+  if(callActive) endCall();
+  else startCall();
+});
+
+/* ---------- Retell events drive the UI ---------- */
+retellWebClient.on('call_started', () => {
+  callActive = true;
+  orb.classList.remove('connecting');
+  orb.classList.add('live');
+  if(liveBadge) liveBadge.style.display = 'inline-flex';
+  setStatus('Live — Emili is listening');
+  setButton('End Call', 'danger');
+});
+
+retellWebClient.on('call_ready', () => {
+  callActive = true;
+  setStatus('Connected — say hello');
+});
+
+retellWebClient.on('agent_start_talking', () => {
+  if(callActive) setStatus('Emili is speaking…');
+});
+
+retellWebClient.on('agent_stop_talking', () => {
+  if(callActive) setStatus('Your turn — go ahead');
+});
+
+retellWebClient.on('call_ended', () => {
+  callActive = false;
+  orb.classList.remove('live','connecting');
+  if(liveBadge) liveBadge.style.display = 'none';
+  setStatus('Call ended');
+  setButton('Call the Agent', 'primary');
+});
+
+retellWebClient.on('error', (err) => {
+  console.error('[Retell] error:', err);
+  showError((err && (err.message || err.error_message)) || 'The call hit an error.');
+  endCall();
+});
+
+/* ---------- openers / closers ---------- */
+document.querySelectorAll('.js-talk').forEach(btn => {
+  btn.addEventListener('click', (e) => { e.preventDefault(); openVoice(); });
+});
+closeBtn.addEventListener('click', closeVoice);
+document.querySelectorAll('.js-close-voice').forEach(a => {
+  a.addEventListener('click', () => closeVoice());
+});
+overlay.addEventListener('mousedown', (e) => { if(e.target === overlay) closeVoice(); });
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && overlay.classList.contains('open')) closeVoice();
+});
+</script>
+
 <script>
 (function(){
   'use strict';
@@ -1241,7 +1406,7 @@
     phase += 0.13;
     for(var i=0;i<bars.length;i++){
       var x = i / bars.length;
-      var env = Math.sin(Math.PI * x);            /* taper at the edges */
+      var env = Math.sin(Math.PI * x);
       var n = Math.sin(phase + i*0.55) * .5 + Math.sin(phase*1.7 + i*0.21) * .35 + Math.sin(phase*0.6 + i*1.1) * .15;
       var h = 6 + Math.abs(n) * 74 * env * amp;
       bars[i].style.height = h.toFixed(1) + 'px';
@@ -1273,7 +1438,6 @@
   function typeLine(){
     var text = lines[li], i = 0;
     captionText.textContent = '';
-    amp = 1;
     var t = setInterval(function(){
       captionText.textContent = text.slice(0, ++i);
       if(i >= text.length){
@@ -1306,146 +1470,9 @@
     success.classList.add('show');
   });
 
-  /* ---------- voice demo: native Retell web call ---------- */
-  /*  Retell's stock widget is chat-only and needs a public key + a valid agent,
-      so the demo here creates its own web call with the PUBLIC agent id.  */
-  var VOICE = {
-    agentId: 'agent_b56cecb7ced0f34e1a43ce1e92',
-    api: 'https://api.retellai.com/v2/create-web-call',
-    call: null, state: 'idle'
-  };
-
-  var overlay = document.getElementById('voiceOverlay');
-  var sheet = overlay ? overlay.querySelector('.voice-sheet') : null;
-  var orb = document.getElementById('voiceOrb');
-  var statusEl = document.getElementById('voiceStatus');
-  var startBtn = document.getElementById('voiceStart');
-  var startLabel = document.getElementById('voiceStartLabel');
-  var fallbackEl = document.getElementById('voiceFallback');
-  var fallbackMsg = document.getElementById('voiceFallbackMsg');
-  var closeBtn = document.getElementById('voiceClose');
-  var liveBadge = document.getElementById('voiceLive');
-  var lastFocus = null;
-
-  function setStatus(t){ if(statusEl) statusEl.textContent = t; }
-  function setBusy(on, label){
-    if(startBtn){ startBtn.disabled = !!on; }
-    if(startLabel) startLabel.textContent = label || 'Start the call';
-  }
-  function showError(msg){
-    if(fallbackEl && fallbackMsg){
-      fallbackMsg.textContent = msg;
-      fallbackEl.classList.add('show');
-    }
-  }
-
-  function openVoice(){
-    if(!overlay) return;
-    lastFocus = document.activeElement;
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden','false');
-    document.body.classList.add('voice-open');
-    if(sheet) sheet.focus({preventScroll:true});
-    if(mobileMenu.classList.contains('open')){ mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); }
-    setStatus('Ready to talk');
-  }
-
-  function closeVoice(){
-    if(!overlay) return;
-    stopCall();
-    overlay.classList.remove('open');
-    overlay.setAttribute('aria-hidden','true');
-    document.body.classList.remove('voice-open');
-    if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
-  }
-
-  function stopCall(){
-    if(VOICE.call){
-      try{ VOICE.call.stop(); }catch(e){}
-      VOICE.call = null;
-    }
-    VOICE.state = 'idle';
-    if(orb) orb.classList.remove('live','connecting');
-    if(liveBadge) liveBadge.style.display = 'none';
-    setBusy(false, 'Start the call');
-    setStatus('Ready to talk');
-  }
-
-  function startCall(){
-    if(VOICE.call){ closeVoice(); return; }
-    var Client = window.RetellWebClient || (window.RetellClient && window.RetellClient.RetellWebClient);
-    if(!Client){
-      showError('The voice client could not load — check your internet connection and reload the page.');
-      return;
-    }
-    if(fallbackEl) fallbackEl.classList.remove('show');
-    setBusy(true, 'Connecting…');
-    setStatus('Connecting…');
-    if(orb) orb.classList.add('connecting');
-
-    var client = new Client();
-    VOICE.call = client;
-
-    client.on('call_started', function(){
-      VOICE.state = 'live';
-      if(orb){ orb.classList.remove('connecting'); orb.classList.add('live'); }
-      if(liveBadge) liveBadge.style.display = 'inline-flex';
-      setBusy(false, 'End the call');
-      setStatus('Live — Emili is listening');
-    });
-    client.on('call_ended', function(){ VOICE.call = null; stopCall(); });
-    client.on('call_ready', function(){ setStatus('Connected — say hello'); });
-    client.on('agent_start_talking', function(){ setStatus('Emili is speaking…'); });
-    client.on('agent_stop_talking', function(){ if(VOICE.state === 'live') setStatus('Your turn — go ahead'); });
-    client.on('error', function(err){
-      var m = (err && (err.message || err.error_message)) || 'The call could not start.';
-      showError(m + ' — if this mentions a microphone, allow mic access for this site and try again.');
-      stopCall();
-    });
-
-    fetch(VOICE.api, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ agent_id: VOICE.agentId })
-    })
-    .then(function(r){
-      return r.json().then(function(j){
-        if(!r.ok) throw new Error(j.message || ('Request failed (' + r.status + ')'));
-        return j;
-      });
-    })
-    .then(function(data){
-      if(!data || !data.access_token) throw new Error('No access token returned for this agent.');
-      return client.startCall({ accessToken: data.access_token });
-    })
-    .catch(function(err){
-      showError((err && err.message ? err.message : 'The call could not start.') +
-        ' — the agent must be published in Retell, and the API must allow browser calls.');
-      stopCall();
-    });
-  }
-
-  document.querySelectorAll('.js-talk').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      openVoice();
-    });
-  });
-
-  if(closeBtn) closeBtn.addEventListener('click', closeVoice);
-  if(startBtn) startBtn.addEventListener('click', startCall);
-  document.querySelectorAll('.js-close-voice').forEach(function(a){
-    a.addEventListener('click', function(){ closeVoice(); });
-  });
-  if(overlay) overlay.addEventListener('mousedown', function(e){ if(e.target === overlay) closeVoice(); });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && overlay && overlay.classList.contains('open')) closeVoice();
-  });
-
   /* ---------- year ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
-
 </body>
 </html>
